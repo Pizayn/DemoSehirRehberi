@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <!--router link butona bastığında üzerini aktif belirgin hale getirir  -->
+      <li class="nav-item">
+        <a class="nav-link" routerLink="City" routerLinkActive="active" >City <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="value" routerLinkActive="active">Value</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"routerLink="cityadd"routerLinkActive="active" >Add</a>
+      </li>
+      <li class="nav-item" >
+        <a class="nav-link" routerLink="register"routerLinkActive="active"*ngIf="!isAuthenticated" >Register</a>
+      </li>
+    </ul>
+     <!--ngmodel ise bu inputun neye denk geldğiği belirtmek içindir -->
+    <!-- formlara isim verilmesi gerek loginform verdik ve bunun angular form olduğunu belirttik ngForm ile -->
+    <form *ngIf="!isAuthenticated" #loginForm="ngForm" (ngSubmit)="login()" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" name="userName" [(ngModel)]="loginUser.userName" required type="text" placeholder="User Name">
+      <input class="form-control mr-sm-2" name="password" [(ngModel)]="loginUser.password" required type="password" placeholder="password">
+
+      <button class="btn btn-secondary my-2 my-sm-0" [disabled]="!loginForm.valid" type="submit">Login</button>
+
+    </form>
+    <button style="margin-right: 20px;" class="btn btn-secondary my-2 my-sm-0" *ngIf="isAuthenticated" (click)="logOut()" >Log Out</button>
+
+  </div>
+</nav>
